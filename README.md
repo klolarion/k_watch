@@ -64,7 +64,7 @@ The chart declares a Kubernetes version constraint of `>=1.21.0-0`. Container im
 
 ```bash
 helm install k-watch oci://ghcr.io/klolarion/charts/k-watch \
-  --version 0.1.0 \
+  --version 0.1.1 \
   --namespace k-watch \
   --create-namespace
 ```
@@ -136,7 +136,7 @@ ingress:
 
 ```bash
 helm upgrade --install k-watch oci://ghcr.io/klolarion/charts/k-watch \
-  --version 0.1.0 \
+  --version 0.1.1 \
   --namespace k-watch \
   --create-namespace \
   -f my-values.yaml

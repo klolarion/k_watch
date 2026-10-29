@@ -64,7 +64,7 @@ Deployment, StatefulSet, DaemonSet, Job, CronJob과 Service, Ingress, PVC, PV의
 
 ```bash
 helm install k-watch oci://ghcr.io/klolarion/charts/k-watch \
-  --version 0.1.0 \
+  --version 0.1.1 \
   --namespace k-watch \
   --create-namespace
 ```
@@ -136,7 +136,7 @@ ingress:
 
 ```bash
 helm upgrade --install k-watch oci://ghcr.io/klolarion/charts/k-watch \
-  --version 0.1.0 \
+  --version 0.1.1 \
   --namespace k-watch \
   --create-namespace \
   -f my-values.yaml

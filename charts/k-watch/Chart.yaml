@@ -1,14 +1,17 @@
 apiVersion: v2
 name: k-watch
-description: A namespace map for one Kubernetes cluster
+description: Read-only Kubernetes dashboard that maps how resources in a namespace connect and shows Pod changes live
 type: application
-version: 0.1.0
-appVersion: "0.1.0"
+version: 0.1.1
+appVersion: "0.1.1"
 keywords:
   - kubernetes
+  - dashboard
   - namespace
   - visualization
+  - topology
 home: https://github.com/klolarion/k_watch
+icon: https://raw.githubusercontent.com/klolarion/k_watch/main/frontend/public/k-watch-logo.svg
 sources:
   - https://github.com/klolarion/k_watch
 maintainers:
@@ -18,5 +21,5 @@ annotations:
   licenses: Apache-2.0
   images: |
     - name: k-watch
-      image: ghcr.io/klolarion/k-watch:0.1.0
+      image: ghcr.io/klolarion/k-watch:0.1.1
 kubeVersion: ">=1.21.0-0"

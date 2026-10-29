@@ -1,0 +1,4 @@
+# Artifact Hub repository metadata. The release workflow pushes this file to
+# oci://ghcr.io/klolarion/charts/k-watch under the artifacthub.io tag, which
+# gives the listing its Verified Publisher badge.
+repositoryID: f05e123e-d67f-4027-819d-2dc0aa236b98
