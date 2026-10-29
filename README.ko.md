@@ -215,7 +215,7 @@ scripts/         릴리스 버전 일관성 검사
 
 ### 릴리스
 
-1. [Chart.yaml](charts/k-watch/Chart.yaml)의 `version`, `appVersion`, `images` 주석과 [README.md](README.md), [README.ko.md](README.ko.md)의 `--version` 예시를 새 버전으로 맞춥니다.
+1. [Chart.yaml](charts/k-watch/Chart.yaml)의 `version`, `appVersion`, `images` 주석과 [README.md](README.md), [README.ko.md](README.ko.md), [차트 README](charts/k-watch/README.md)의 `--version` 예시를 새 버전으로 맞춥니다.
 2. `scripts/check-version.sh <version>`으로 버전 일관성을 확인합니다.
 3. `v0.1.0` 형식의 태그를 push합니다. [릴리스 워크플로](.github/workflows/release.yml)가 버전을 검증하고 멀티 아키텍처 이미지와 OCI Helm 차트를 GHCR에 게시합니다.
 4. 첫 릴리스 뒤 GHCR의 `k-watch`, `charts/k-watch` 패키지를 Public으로 설정합니다.

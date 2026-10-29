@@ -215,7 +215,7 @@ Local development requires Go 1.26 or later and Node.js 22. See the **[developme
 
 ### Releases
 
-1. Update `version`, `appVersion`, and the `images` annotation in [Chart.yaml](charts/k-watch/Chart.yaml), along with the `--version` examples in both [README.md](README.md) and [README.ko.md](README.ko.md).
+1. Update `version`, `appVersion`, and the `images` annotation in [Chart.yaml](charts/k-watch/Chart.yaml), along with the `--version` examples in [README.md](README.md), [README.ko.md](README.ko.md), and the [chart README](charts/k-watch/README.md).
 2. Run `scripts/check-version.sh <version>` to verify version consistency.
 3. Push a tag such as `v0.1.0`. The [release workflow](.github/workflows/release.yml) verifies versions and publishes multi-architecture images and the OCI Helm chart to GHCR.
 4. After the first release, set the `k-watch` and `charts/k-watch` packages to Public in GHCR.
