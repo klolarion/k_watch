@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="512" height="512" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Colors -->
+  <!-- primary stroke: #1F3B5C (dark navy) -->
+  <!-- light fill: #DCEAFB -->
+  
+  <!-- Hexagon outline -->
+  <path d="M128 12
+           L210 58
+           L210 198
+           L128 244
+           L46 198
+           L46 58
+           Z"
+        fill="white" fill-opacity="0" stroke="#1F3B5C" stroke-width="10" stroke-linejoin="round"/>
+  
+  <!-- Monitor body -->
+  <rect x="72" y="84" rx="10" ry="10" width="112" height="72"
+        fill="#DCEAFB" stroke="#1F3B5C" stroke-width="8"/>
+  
+  <!-- Monitor stand -->
+  <rect x="122" y="160" width="12" height="14" rx="2" fill="#1F3B5C"/>
+  <rect x="96" y="174" width="64" height="8" rx="4" fill="#1F3B5C"/>
+  
+  <!-- Relationship/metrics line on screen -->
+  <path d="M88 138 L116 120 L144 132 L168 108"
+        fill="none" stroke="#1F3B5C" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Nodes -->
+  <circle cx="88" cy="138" r="5" fill="#1F3B5C"/>
+  <circle cx="116" cy="120" r="5" fill="#1F3B5C"/>
+  <circle cx="144" cy="132" r="5" fill="#1F3B5C"/>
+  <circle cx="168" cy="108" r="5" fill="#1F3B5C"/>
+</svg>

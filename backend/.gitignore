@@ -1,0 +1,34 @@
+# --- Go build artifacts ---
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Binary output (custom build)
+bin/
+build/
+
+# Coverage / profiling
+coverage.out
+*.prof
+
+# Local dev tools (ex. air, reflex hot reload)
+.air/
+.air.toml
+
+# --- IDE / Editor ---
+.vscode/
+.idea/
+*.swp
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- Vendor (if you don’t use it) ---
+vendor/
+
+# buildfile

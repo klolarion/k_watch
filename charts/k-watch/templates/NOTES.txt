@@ -1,0 +1,22 @@
+K-Watch has no login of its own. Anyone who can reach it can read the namespaces,
+workloads, nodes and events of this cluster.
+
+Open it through a port-forward:
+
+  kubectl -n {{ .Release.Namespace }} port-forward svc/{{ include "k-watch.fullname" . }} 8282:{{ .Values.service.port }}
+
+then visit http://localhost:8282
+{{- if .Values.ingress.enabled }}
+
+Ingress is enabled, so it is also served at:
+{{- range .Values.ingress.hosts }}
+{{- $host := .host }}
+{{- range .paths }}
+  http{{ if $.Values.ingress.tls }}s{{ end }}://{{ $host }}{{ .path }}
+{{- end }}
+{{- end }}
+
+Make sure something in front of that address checks who is asking.
+{{- end }}
+
+Node CPU and memory usage appear only when metrics-server runs in the cluster.

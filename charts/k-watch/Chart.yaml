@@ -1,0 +1,22 @@
+apiVersion: v2
+name: k-watch
+description: A namespace map for one Kubernetes cluster
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+keywords:
+  - kubernetes
+  - namespace
+  - visualization
+home: https://github.com/klolarion/k_watch
+sources:
+  - https://github.com/klolarion/k_watch
+maintainers:
+  - name: klolarion
+    url: https://github.com/klolarion
+annotations:
+  licenses: Apache-2.0
+  images: |
+    - name: k-watch
+      image: ghcr.io/klolarion/k-watch:0.1.0
+kubeVersion: ">=1.21.0-0"

@@ -1,0 +1,11 @@
+.git
+.github
+.idea
+.vscode
+**/node_modules
+frontend/dist
+backend/main
+backend/backend
+charts
+dev
+*.md
