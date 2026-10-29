@@ -379,7 +379,7 @@ function NamespaceMapView({ isConnected, refreshKey }: NamespaceMapProps) {
         <div className="namespace-toolbar">
           <div>
             <h2>Namespaces</h2>
-            <p>Open one namespace. The map does not draw the whole cluster.</p>
+            <p>Pick a namespace to see how its resources connect.</p>
           </div>
           <input
             className="namespace-search"
@@ -455,7 +455,7 @@ function NamespaceMapView({ isConnected, refreshKey }: NamespaceMapProps) {
           </p>
         )}
         {map && map.nodes.length > 300 && (
-          <p className="map-note">This namespace has {map.nodes.length} objects. The map only shows this namespace, not the cluster.</p>
+          <p className="map-note">This namespace has {map.nodes.length} objects. Click a resource to focus on its connections.</p>
         )}
       </div>
       {mapError && <p className="map-error">{mapError}</p>}
