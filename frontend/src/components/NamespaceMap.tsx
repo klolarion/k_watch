@@ -135,14 +135,13 @@ function showLivePod(cy: cytoscape.Core, event: PodFlowEvent, namespace: string,
   const shift = flowShift(event.pod)
 
   cy.batch(() => {
-    let node = cy.getElementById(id)
+    const node = cy.getElementById(id)
     if (node.empty()) {
       cy.add({
         data: { id, label, type: 'FlowPod', rawLabel: event.pod },
         position: { x: pos.x + shift.x, y: pos.y + shift.y },
         classes: `flow-${tone}`
       })
-      node = cy.getElementById(id)
       cy.add({
         data: { id: `flow:${parentId}>${event.pod}`, source: parentId, target: id, kind: 'flow' },
         classes: `flow-${tone}`
@@ -208,7 +207,6 @@ interface NamespaceMapProps {
 
 function NamespaceMapView({ isConnected, refreshKey }: NamespaceMapProps) {
   const cyRef = useRef<cytoscape.Core | null>(null)
-  const focusRef = useRef<FocusResponse | null>(null)
   const requestRef = useRef(0)
   const [namespaces, setNamespaces] = useState<NamespaceSummary[]>([])
   const [query, setQuery] = useState('')
@@ -226,7 +224,6 @@ function NamespaceMapView({ isConnected, refreshKey }: NamespaceMapProps) {
   const [flowError, setFlowError] = useState('')
   const flowTimers = useRef<Map<string, number>>(new Map())
 
-  focusRef.current = focus
   const elements = useMemo(() => (map ? toElements(map) : []), [map])
 
   useEffect(() => {
