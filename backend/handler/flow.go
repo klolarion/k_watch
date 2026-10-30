@@ -24,6 +24,10 @@ import (
 
 var errWatchExpired = errors.New("watch expired")
 
+// streams ends every open Pod stream once StopStreams is called. A stream never goes idle,
+// so a shutting-down server would otherwise wait on it until its deadline.
+var streams, StopStreams = context.WithCancel(context.Background())
+
 // PodFlow is one pod lifecycle change. The map draws it under the owning workload
 // and drops it after a few seconds, so the canvas does not keep every pod.
 type PodFlow struct {
@@ -98,7 +102,11 @@ func NamespaceFlow(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid namespace"})
 		return
 	}
-	ctx := c.Request.Context()
+	// The stream ends when the client leaves or the server shuts down. EventSource then reconnects on its own.
+	ctx, cancel := context.WithCancel(c.Request.Context())
+	defer cancel()
+	stop := context.AfterFunc(streams, cancel)
+	defer stop()
 	if !namespaceExists(c, ctx, namespace) {
 		return
 	}

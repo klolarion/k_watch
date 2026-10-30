@@ -17,7 +17,7 @@ check() {
 
 check "Chart.yaml version" "$(sed -n 's/^version: *//p' "$chart" | tr -d '"')"
 check "Chart.yaml appVersion" "$(sed -n 's/^appVersion: *//p' "$chart" | tr -d '"')"
-check "Chart.yaml images annotation" "$(sed -n 's/.*image: *ghcr.io\/klolarion\/k-watch://p' "$chart")"
+check "Chart.yaml artifacthub.io/images annotation" "$(sed -n 's/.*image: *ghcr.io\/klolarion\/k-watch://p' "$chart")"
 for name in README.md README.ko.md charts/k-watch/README.md; do
   for found in $(grep -o -- '--version [0-9][^ ]*' "$root/$name" | cut -d' ' -f2 | sort -u); do
     check "$name --version" "$found"

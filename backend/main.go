@@ -1,12 +1,17 @@
 package main
 
 import (
+	"context"
+	"errors"
 	"net/http"
 	"os"
+	"os/signal"
 	"path"
 	"path/filepath"
 	"strconv"
 	"strings"
+	"syscall"
+	"time"
 
 	"github.com/gin-gonic/gin"
 
@@ -49,8 +54,29 @@ func main() {
 		port = "8282"
 	}
 
-	println("K-Watch backend starting on port " + port)
-	_ = r.Run(":" + port)
+	// Kubernetes sends SIGTERM before it stops the Pod. Let open requests finish and end
+	// Pod streams, so the process exits 0 instead of being killed by the signal.
+	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
+	defer stop()
+
+	srv := &http.Server{Addr: ":" + port, Handler: r}
+	srv.RegisterOnShutdown(handler.StopStreams)
+	go func() {
+		println("K-Watch backend starting on port " + port)
+		if err := srv.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
+			println("K-Watch backend stopped: " + err.Error())
+			os.Exit(1)
+		}
+	}()
+
+	<-ctx.Done()
+	stop()
+	println("K-Watch backend shutting down")
+	shutdownCtx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	if err := srv.Shutdown(shutdownCtx); err != nil {
+		println("K-Watch backend shutdown: " + err.Error())
+	}
 }
 
 // staticFile maps a request path to a regular file under ./static, such as the favicon.

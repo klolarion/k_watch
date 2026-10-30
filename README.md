@@ -64,7 +64,7 @@ The chart declares a Kubernetes version constraint of `>=1.21.0-0`. Container im
 
 ```bash
 helm install k-watch oci://ghcr.io/klolarion/charts/k-watch \
-  --version 0.1.1 \
+  --version 0.1.2 \
   --namespace k-watch \
   --create-namespace
 ```
@@ -136,7 +136,7 @@ ingress:
 
 ```bash
 helm upgrade --install k-watch oci://ghcr.io/klolarion/charts/k-watch \
-  --version 0.1.1 \
+  --version 0.1.2 \
   --namespace k-watch \
   --create-namespace \
   -f my-values.yaml
@@ -215,7 +215,7 @@ Local development requires Go 1.26 or later and Node.js 22. See the **[developme
 
 ### Releases
 
-1. Update `version`, `appVersion`, and the `images` annotation in [Chart.yaml](charts/k-watch/Chart.yaml), along with the `--version` examples in [README.md](README.md), [README.ko.md](README.ko.md), and the [chart README](charts/k-watch/README.md).
+1. Update `version`, `appVersion`, and the `artifacthub.io/images` annotation in [Chart.yaml](charts/k-watch/Chart.yaml), along with the `--version` examples in [README.md](README.md), [README.ko.md](README.ko.md), and the [chart README](charts/k-watch/README.md).
 2. Run `scripts/check-version.sh <version>` to verify version consistency.
 3. Push a tag such as `v0.1.0`. The [release workflow](.github/workflows/release.yml) verifies versions and publishes multi-architecture images and the OCI Helm chart to GHCR.
 4. After the first release, set the `k-watch` and `charts/k-watch` packages to Public in GHCR.
