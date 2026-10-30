@@ -1,0 +1,43 @@
+# Weekly update PRs. CI runs on each one, so a passing PR can be merged and shipped in the next release.
+version: 2
+updates:
+  - package-ecosystem: gomod
+    directory: /backend
+    schedule:
+      interval: weekly
+    groups:
+      # One group, so client-go, api, apimachinery and metrics always move together.
+      # A separate k8s.io group split them across PRs and left api ahead of client-go.
+      go-minor-and-patch:
+        update-types: ["minor", "patch"]
+
+  - package-ecosystem: npm
+    directory: /frontend
+    schedule:
+      interval: weekly
+    groups:
+      npm-minor-and-patch:
+        update-types: ["minor", "patch"]
+    ignore:
+      # Major versions of the lint and build tools must move together (ESLint 10 needed
+      # @eslint/js 10 and react-hooks 7 at once, TypeScript 7 waits on typescript-eslint),
+      # so one-package major PRs only fail CI. Take majors by hand.
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns: ["*"]
+
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: weekly
+    ignore:
+      # CI and the development guide use Node.js 22, so move the major version by hand.
+      - dependency-name: node
+        update-types: ["version-update:semver-major"]

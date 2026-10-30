@@ -13,9 +13,9 @@ async function getJSON<T>(endpoint: string): Promise<T> {
     let detail = ''
     try {
       const body = await response.json()
-      detail = body.error ? `: ${body.error}` : ''
+      if (body.error) detail = `: ${body.error}`
     } catch {
-      detail = ''
+      // not JSON, so the status alone describes the failure
     }
     throw new Error(`HTTP ${response.status}${detail}`)
   }

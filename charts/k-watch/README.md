@@ -23,7 +23,7 @@ Source and full documentation: [github.com/klolarion/k_watch](https://github.com
 
 ```bash
 helm install k-watch oci://ghcr.io/klolarion/charts/k-watch \
-  --version 0.1.2 \
+  --version 0.1.3 \
   --namespace k-watch \
   --create-namespace
 ```
