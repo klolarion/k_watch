@@ -1,0 +1,38 @@
+# Weekly update PRs. CI runs on each one, so a passing PR can be merged and shipped in the next release.
+version: 2
+updates:
+  - package-ecosystem: gomod
+    directory: /backend
+    schedule:
+      interval: weekly
+    groups:
+      # client-go, api, apimachinery and metrics must move together.
+      kubernetes:
+        patterns: ["k8s.io/*"]
+      go-minor-and-patch:
+        update-types: ["minor", "patch"]
+
+  - package-ecosystem: npm
+    directory: /frontend
+    schedule:
+      interval: weekly
+    groups:
+      npm-minor-and-patch:
+        update-types: ["minor", "patch"]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns: ["*"]
+
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: weekly
+    ignore:
+      # CI and the development guide use Node.js 22, so move the major version by hand.
+      - dependency-name: node
+        update-types: ["version-update:semver-major"]
