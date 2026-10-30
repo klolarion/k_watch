@@ -6,9 +6,8 @@ updates:
     schedule:
       interval: weekly
     groups:
-      # client-go, api, apimachinery and metrics must move together.
-      kubernetes:
-        patterns: ["k8s.io/*"]
+      # One group, so client-go, api, apimachinery and metrics always move together.
+      # A separate k8s.io group split them across PRs and left api ahead of client-go.
       go-minor-and-patch:
         update-types: ["minor", "patch"]
 
@@ -19,6 +18,12 @@ updates:
     groups:
       npm-minor-and-patch:
         update-types: ["minor", "patch"]
+    ignore:
+      # Major versions of the lint and build tools must move together (ESLint 10 needed
+      # @eslint/js 10 and react-hooks 7 at once, TypeScript 7 waits on typescript-eslint),
+      # so one-package major PRs only fail CI. Take majors by hand.
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: github-actions
     directory: /
